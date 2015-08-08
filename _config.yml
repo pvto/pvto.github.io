@@ -81,8 +81,8 @@ JB :
   #
   comments :
     provider : disqus
-    disqus : bleedingpoetry
-      short_name : jekyllbootstrap
+    disqus : 
+      short_name : bleedingpoetry
  #   livefyre :
  #     site_id : 123
  #   intensedebate :
