@@ -14,5 +14,5 @@ tagline: Experiments, code
 </ul>
 
 ###Thanks for reading!
-(You can contact me if you did not understand something or would like to toss up some new points.)
+(You can contact me if you did not understand something or would like to toss up some points.)
 

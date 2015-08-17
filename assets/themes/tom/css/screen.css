@@ -195,3 +195,27 @@ ul.posts {
   #related h2 {
     margin-bottom: 1em;
   }
+
+.green {
+  color: #009000;
+}
+.top, .top tbody tr td {
+  vertical-align: top;
+}
+.table-bordered {
+  border-spacing: 0px;
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+}
+.table-bordered th, .table-bordered td {
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin: 0px;
+}
+.bg-red {  background-color: #ff0000; }
+.fg-red {  color: #ff0000; }
+.bg-green {  background-color: #00ff00; }
+.fg-green {  color: #00d000; }
+.smaller-text { font-size: smaller; }
