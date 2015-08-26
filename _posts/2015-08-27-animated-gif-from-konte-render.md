@@ -7,7 +7,7 @@ tags : [konte, generative art, gif, convert]
 {% include JB/setup %}
 
 *Konte is a little language for generating 3D scenes.  You can create pngs of
-arbitrary dimensions from command line or UI, depending on your preference.
+different sizes from command line or UI.
 I'll sequence a render in the UI and convert it to an animated gif.*
 
 For following this through you will need [Java 8 development kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html),
