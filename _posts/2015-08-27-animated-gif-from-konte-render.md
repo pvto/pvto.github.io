@@ -1,27 +1,27 @@
 ---
 layout: post
 category : generative art
-tagline: "Creating an animated gif from a Konte render (3D)"
+tagline: "Creating an animated gif from a konte render (3D)"
 tags : [konte, generative art, gif, convert]
 ---
 {% include JB/setup %}
 
-*Konte is a little language for generating 3D scenes.  It is a bit lonely,
-it does not talk with RenderMan or other 3D formats, only generates
-png's and svg's.  I'll create a series of images in
-a UI, then convert it to an animated gif.*
+*Konte is a little language for generating 3D scenes.  You can create pngs of
+arbitrary dimensions from command line or UI, depending on your preference.
+I'll sequence a render in the UI and convert it to an animated gif.*
 
 For following this through you will need [Java 8 development kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html),
 [git](https://git-scm.com/), and
 also [Maven](https://maven.apache.org/install.html) and [convert](http://www.imagemagick.org/script/convert.php)
-(command line graphics conversion tool).  I will not delve into how these are installed!
+(command line graphics conversion tool).
 
 
-After following my instructions, you will have this (and you can replace the
-texture by simply copying another bitmap to place, or change the artifact shape by altering its
-formula):
+After following through, you will have put together this:
 
 ![konte-render-result](/assets/img/animated-gif-from-konte-render/konte-render-result.gif)
+
+(You can then replace the texture and change the artifact shape if you like,
+  but I'll leave that to an excercise :)
 
 So, let's get that gif out of the viewport.
 
@@ -54,17 +54,17 @@ drwxr-xr-x 2 paavo paavo  4096 helmi 27 23:30 plugin/
 Copy [texture.png](/assets/img/animated-gif-from-konte-render/texture.png) directly into the *img* folder
 (we'll use it in the script below).
 
-If you have java 8 and maven installed (test by typing ```java -version```,
+If you have Java 8 and Maven installed (test by typing ```java -version```,
 ```mvn -version```):
 
 {% highlight bash %}
-# this compiles a konte executable under *target* folder:
+# this compiles a Java archive under *target* folder:
 $ mvn clean install
 # now run konte ui:
-$  java -cp target/konte.jar org.konte.ui.Ui
+$  java -Xmx3072m -cp target/konte.jar org.konte.ui.Ui
 {% endhighlight %}
 
-If all is still well (you have a graphical environment, etc...), a Konte window
+If all is well and you have a graphical environment and all, a konte window
 opens and tries to occupy your first screen.
 
 ![konte-start-screen](/assets/img/animated-gif-from-konte-render/konte-screenshot-A.png)
@@ -79,24 +79,25 @@ $ find . -name texture.png
 ./img/texture.png
 {% endhighlight %}
 
-Copy-paste the Konte code from the bottom of this page to editor pane (left side of window),
-then hit ```Ctrl+R``` for Render.  After the render completes – and it takes a
-few seconds – hit ```Ctrl+E``` to save your newly generated scene.
+Copy-paste the konte code from the bottom of this page to editor pane (left side of window),
+then hit ```Ctrl+S``` to save the script, then ```Ctrl+R``` for Render.
+After the render completes – and it takes a few seconds –
+hit ```Ctrl+E``` to save your newly generated image.  konte places it automatically in the
+same folder where you saved the script file and includes a timestamp in the filename.
 
-After you have successfully rendered and saved a single png, press ```Ctrl+Alt+R```
+After you have successfully rendered and saved a png, press ```Ctrl+Alt+R```
 to open a *Generate a sequence of images* dialog. Feed *600* into both "width" and "height",
-and *10* to "Frames per second", then remove the tick from the *"generate" frames* checkbox.
+and *10* to "Frames per second", then remove the tick from *"generate" frames* checkbox.
 Press ```Enter``` for ok, and wait for the render to complete.
 
 ![konte-start-screen](/assets/img/animated-gif-from-konte-render/konte-screenshot-B.png)
 
-Konte renders your sequence under *seq* folder.  Quit Konte (```Ctrl+Q```).
+Konte saves your sequence as individual png's under *seq* folder.  Quit konte (```Ctrl+Q```).
 
-Next we'll convert the sequence of images into a gif.  And that's it.
-Congratulations!  No hand was harmed while creating this picture :)
+Next we'll convert the sequence of images into a gif (assuming bash and [convert](http://www.imagemagick.org/script/convert.php)).
 
 {% highlight bash %}
-# we need bash for our convert script below to work
+# ensure we have bash shell for our convert script to work with
 $ bash
 
 $ cd seq
@@ -114,7 +115,15 @@ $ ls -lrt|tail -n1
 -rw-rw-r-- 1 paavo paavo 1883479 elo   25 21:43 result.gif
 {% endhighlight %}
 
-Finally here is the konte script to paste into your fresh tab:
+And that's it.
+Congratulations!  No hand was harmed while creating this picture :)
+
+Below is the konte script to paste into your fresh tab.
+
+If you find konte
+intriguing, there are some tutorials in the UI.  Also there is a
+more deep tutorial at the [konte source page](https://github.com/pvto/konte-art),
+including a few more graphical examples like trees and cartoon cities.
 
 <pre class="smaller-text">
 camera { z -2 }
