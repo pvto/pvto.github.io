@@ -16,11 +16,11 @@ also [Maven](https://maven.apache.org/install.html) and [convert](http://www.ima
 (command line graphics conversion tool).
 
 
-After following through, you will have put together this:
+We will put together this:
 
 ![konte-render-result](/assets/img/animated-gif-from-konte-render/konte-render-result.gif)
 
-(You can then replace the texture and change the artifact shape if you like,
+(You can replace the texture and change the artifact shape if you like,
   but I'll leave that to an excercise :)
 
 So, let's get that gif out of the viewport.
