@@ -33,12 +33,13 @@ MyBench.int1e6UQuickSort  sample   1641  0.131 ±  0.001   s/op  0.107 ±  0.002
 MyBench.int1e6UBleedSort  sample   2410  0.087 ±  0.001   s/op  0.063 ±  0.002
 MyBench.int1e6UJavaSort   sample   1978  0.105 ±  0.001   s/op  0.081 ±  0.002
 
-MyBench.int1e7UQuickSort  sample    200  1.483 ±  0.014   s/op  1.459 ±  0.015
-MyBench.int1e7UBleedSort  sample    373  0.938 ±  0.009   s/op  <span class="green">0.914 ±  0.010</span>
-MyBench.int1e7UJavaSort   sample    200  1.144 ±  0.009   s/op  1.120 ±  0.010
+MyBench.int1e7UQuickSort  sample    200  1.483 ±  0.014   s/op  1.247 ±  0.015
+MyBench.int1e7UBleedSort  sample    373  0.938 ±  0.009   s/op  <span class="green">0.701 ±  0.010</span>
+MyBench.int1e7UJavaSort   sample    200  1.144 ±  0.009   s/op  0.908 ±  0.010
 </pre>
 
-So I won by 10–15% over these datasets, without optimizing my routines.
+So I won by 20–25% over these datasets, without optimizing my routines. (*Edit: 20–25%, not 10–15%.
+ Error in corrected 1e7 values, fixed 2015/08/30*)
 
 My sorts didn't do bad on uniformly increasing datasets of 1000.000 items with 10% or 1% random replacements.  
 
