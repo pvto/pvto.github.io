@@ -14,20 +14,22 @@ Some new versions
 [4](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort4.java)
 [4b](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort4b.java)
 [5](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort5.java)
-of bleedsort followed
-with quick benchmarks
+of bleedsort followed,
+along with quick benchmarks
 [3](https://github.com/pvto/java-sort-experiments/blob/master/beedsort-3-times.txt)
 [3-2](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-3-times-phase-2.txt)
 [4](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-4-times.txt)
 [4b](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-4b-times.txt)
 [4b-2](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-4b2-times.txt)
 [5](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-5-times.txt)
-on different kinds of datasets.  If you look at those, they are more like track records
-than a view on frozen history.
+on different kinds of datasets.  If you look at those, there are many kinds of errors
+and biases in them.  I wanted quick insight into my developing algorithms,
+not an absolute proof of their value, yet.
 
-As a teaser, here's a series of plots from a range of binomial benchmarks
-(plotted in [R](https://www.r-project.org/)).
-I explain my benchmark procedure shortly.
+Here's a series of plots of binomial benchmarks
+with three
+successive generations
+(plots: [R](https://www.r-project.org/)).
 
 ![~bin(0.1, 10000), bleedsort4](/assets/img/bleedsort4/bin-01-n.png)
 
@@ -35,32 +37,76 @@ I explain my benchmark procedure shortly.
 
 ![~bin(0.1, 10000), bleedsort5](/assets/img/bleedsort4/bs5-bin-01-n.png)
 
-#Benchmarks
+I have ```20*x``` (x≥1) measurements for each data point in all pictures.
 
-So I switched away from JMH because I couldn't bear the waits, and got
-slapped on my fingers...  The above pictures illustrate a very
-Java-like fault in a hand-written microbenchmark.  I'm not sure if
-it really shines from there,
-but I found benchmark times varying hugely over days.
+#Benchmarks: fallibility and other concerns
+
+As of earlier I was running benchmarks with JMH.  It is an established
+microbenchmark framework backed by the expertise of Oracle's
+engineers.
+It was soon clear that I couldn't test as much and
+as fast as I needed to.
+My algorithms evolved very quickly and a JMH run for a single datapoint
+could take an hour or more if data was hard to prepare.
+I wrote versions 3 and 4 of bleedsort
+on two successive days, to contrast with these.
+I could shorten my JMH sampling times, but the results then had blatant variance.
+Also JMH enforced some restrictions in building supportive structures,
+recycling data, etc.
+
+I switched away from JMH to hand-written JUnit benchmarks because of these limitations.
+JUnit was also more tightly integrated with my IDE, which was nice for explorative
+testing.
+
+If I should write a paper about these, then my JUnit tests would not be good enough.
+Above pictures illustrate a very
+Java-like fault that ensued.
+Namely I found JUnit times varying hugely over days.
 I run on two different machines, but it had nothing to do with that.
+What was I not noticing?
 
-I tracked the unwanted semirandom bias down to the benchmark cycle,
-which sometimes collided badly with the gc cycle, making all tests slow down.
-It could force a 100% slowdown in a bad case. See blue datapoint at
-array size 4e4 in the last picture.
+In the end I deduced this unwanted semirandom bias down to the benchmark cycle.
+I was benchmarking three algorithms against same data in successive loops.
+This was very nice for ad hoc analysis (I could track down performance issues
+to the exact form of random data when I needed to),
+but running different things together allows them affect each other.
+Because small datasets were so fast to sort, I had created extra wight by running
+20*50 or 20*100 sorts instead of 20.
 
-Driving gc by hand only made things worse and weird...
-However by varying the number of inner-loop iterations
-– I have ```20*x``` measurements for each data point –
-I could find a nice cycle for each measurement.  Happy again,
-especially since gc affected constant-space Arrays.sort relatively little in
-the first place.  (This all could be methodized as a search over cycle space,
+When I ran bleedsort3 x times, then bleedsort4 x times, then Arrays.sort x times,
+repeat,
+I found that with some data sizes bleedsort performance degraded sharply.
+
+I guessed that my benchmarks collided badly with the gc cycle.
+Bleedsorts as distribution sorts do make relatively large ad hoc memory reservations.
+They were also the sorts that were slowing down,
+whereas Arrays.sort had much less variance.
+This could be like 100% slowdown in a bad case.
+There is a blue datapoint at
+array size 4e4 in the last picture that illustrates this.
+I could repeat performance degradation simply by re-running a test with specific
+parameters, so it was not totally random.
+
+I tried driving gc by hand, but it only made things weird.
+However varying the number of inner-loop executions seemed to modify the degradation pattern,
+even to the point of removing degradation.  Arrays.sort times remained more stable
+throughout.
+
+
+Now by some manual variation I could find a nice cycle for each measurement.
+I switched away from plotting lines (breaking that fun illusion of continuity)
+and started plotting individual datapoints.
+
+(This all could be methodized as a search over cycle space,
 which is perhaps one of the things that JMH does under the hood – haven't looked there.)
 
-There is some priming too,
+My JUnit tests do some priming too,
 not as correct as in JMH, I'm sure, but it helps a little anyway.
 
-#Sampling and tactical AI
+So this much about measuring at this stage.
+
+
+#Explaining my algorithm-specific sampling techniques
 
 I was a bit misleading to speak about bleedsort above.
 My sorting turned into an orchestrated ensemble of sort strategies.
@@ -73,7 +119,8 @@ the **amount of repetition** in an array is a key question.  A relatively
 unique array will map neatly on a scale, but if there are many densely packed
 places and duplicate items, bleedsorts will plunge to suboptimal pit.
 
-My original idea was to sample **twenty** contiguous patches of **100** items
+This is why I needed to estimate the amount of repetition found in a dataset.
+My original idea was to take **twenty** patches of **100** items
 from the target array
 and calculate average repetition per value from this sample.
 It was not enough.
@@ -83,6 +130,9 @@ The short runs had relatively low likelihood of hitting duplicates in large arra
 
 All this sampling means that I can not compete with sorting small or already
 sorted arrays.  So I'm not doing that, as stated [before](/java/2015/08/17/beating-java-sort-performance/).
+As a teaser however I wrote a
+[naive monotonous mergesort](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/MergeSort.java)
+that beats Arrays.sort when sorting sine waves of small frequences.
 
 The second thing that I sampled was quite naturally data distribution.
 In bleedsort1 I started simply from **three quantiles**, 0th, 50th, and 100th.
@@ -92,9 +142,9 @@ In bleedsort3 I switched to **nine quantiles** 0, 12.5, 25, ... , 100
 and have stuck with them since.
 
 I sample a batch of 160 random items from the array and order them
-to get the nine quantile estimates.
-These provide some fast solutions for algorithm choice,
-or are used by bleedsorts in their internals.
+to get nine quantile estimates.
+They provide some fast solutions for algorithm choice.
+They are also used by bleedsorts.
 
 #Algorithms
 
