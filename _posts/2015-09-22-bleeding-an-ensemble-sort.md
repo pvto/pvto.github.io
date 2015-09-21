@@ -6,29 +6,33 @@ tags : [sorting, sort algorithms, optimization, java, java 8, bleedsort, treesor
 ---
 {% include JB/setup %}
 
-After I blogged about the possibility of [beating Java sort performance](/java/2015/08/17/beating-java-sort-performance/),
-I got really obsessed to prove my case with **integers**!
-Some new versions
+After blogging about the possibility of [beating Java sort performance](/java/2015/08/17/beating-java-sort-performance/),
+I got really obsessed to prove my case with **integers**.
+My results are not scientifically accurate, but they indicate that a great deal
+can be done towards a robust general intelligence for sorting large arrays.
+
+Starting from my earlier code, I created new versions of bleedsort
 [2](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort2.java)
 [3](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort3.java)
 [4](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort4.java)
 [4b](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort4b.java)
-[5](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort5.java)
-of bleedsort followed,
-along with quick benchmarks
-[3](https://github.com/pvto/java-sort-experiments/blob/master/beedsort-3-times.txt)
+[5](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort5.java),
+and ran quick benchmarks on them with different datasets.
+If you look at the benchmarks [3](https://github.com/pvto/java-sort-experiments/blob/master/beedsort-3-times.txt)
 [3-2](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-3-times-phase-2.txt)
 [4](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-4-times.txt)
 [4b](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-4b-times.txt)
 [4b-2](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-4b2-times.txt)
-[5](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-5-times.txt)
-on different kinds of datasets.  If you look at those, there are many kinds of errors
-and biases in them.  I wanted quick insight into my developing algorithms,
-not an absolute proof of their value, yet.
+[5](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-5-times.txt),
+there are many kinds of errors
+and biases in them.  What I wanted was quick insight into my developing algorithms,
+not a solid record of their value.  More thorough data could be gathered later if I succeeded
+well enough.
 
-Here's a series of plots of binomial benchmarks
-with three
-successive generations
+This post is really a wall of text followed by a wall of graphs.
+To start where I left in the earlier post,
+here's a series of plots of binomial benchmarks that the first version of
+bleedsort did so poorly on.
 (plots: [R](https://www.r-project.org/)).
 
 ![~bin(0.1, 10000), bleedsort4](/assets/img/bleedsort4/bin-01-n.png)
@@ -41,43 +45,43 @@ I have ```20*x``` (x≥1) measurements for each data point in all pictures.
 
 #Benchmarks: fallibility and other concerns
 
-As of earlier I was running benchmarks with JMH.  It is an established
-microbenchmark framework backed by the expertise of Oracle's
-engineers.
-It was soon clear that I couldn't test as much and
-as fast as I needed to.
-My algorithms evolved very quickly and a JMH run for a single datapoint
-could take an hour or more if data was hard to prepare.
+As of earlier I was running benchmarks with [JMH](http://openjdk.java.net/projects/code-tools/jmh/).
+It is an established microbenchmark framework
+backed by the expertise of Oracle's engineers.
+But I couldn't test as much and
+as fastly as I needed to with it.
+My algorithms evolved very quickly
+and a JMH run for a single datapoint
+could take an hour or more
+if data was hard to prepare.
 I wrote versions 3 and 4 of bleedsort
-on two successive days, to contrast with these.
-I could shorten my JMH sampling times, but the results then had blatant variance.
+on two successive days to contrast with.
+I tried to shorten my sampling times, but the results then had blatant variance.
 Also JMH enforced some restrictions in building supportive structures,
 recycling data, etc.
 
-I switched away from JMH to hand-written JUnit benchmarks because of these limitations.
-JUnit was also more tightly integrated with my IDE, which was nice for explorative
+I switched away to hand-written JUnit benchmarks.
+JUnit is more tightly integrated with my IDE, which also was nice for explorative
 testing.
 
-If I should write a paper about these, then my JUnit tests would not be good enough.
-Above pictures illustrate a very
-Java-like fault that ensued.
-Namely I found JUnit times varying hugely over days.
+The binomial charts illustrate a very
+Java-like fault that ensued
+– I found JUnit times varying hugely over days.
 I run on two different machines, but it had nothing to do with that.
 What was I not noticing?
 
-In the end I deduced this unwanted semirandom bias down to the benchmark cycle.
 I was benchmarking three algorithms against same data in successive loops.
 This was very nice for ad hoc analysis (I could track down performance issues
 to the exact form of random data when I needed to),
 but running different things together allows them affect each other.
-Because small datasets were so fast to sort, I had created extra wight by running
-20*50 or 20*100 sorts instead of 20.
 
-When I ran bleedsort3 x times, then bleedsort4 x times, then Arrays.sort x times,
+Because small datasets are very fast to sort, I had created extra weight by measuring
+20*x rounds of sorting instead of 20.
+Now when I ran bleedsort3 x times, then bleedsort4 x times, then Arrays.sort x times,
 repeat,
-I found that with some data sizes bleedsort performance degraded sharply.
+I found bleedsort performance degrade sharply with some data sizes and some x.
 
-I guessed that my benchmarks collided badly with the gc cycle.
+It felt natural to guess that my benchmarks collided badly with the gc cycle.
 Bleedsorts as distribution sorts do make relatively large ad hoc memory reservations.
 They were also the sorts that were slowing down,
 whereas Arrays.sort had much less variance.
@@ -98,21 +102,21 @@ I switched away from plotting lines (breaking that fun illusion of continuity)
 and started plotting individual datapoints.
 
 (This all could be methodized as a search over cycle space,
-which is perhaps one of the things that JMH does under the hood – haven't looked there.)
+which is perhaps one of the things that JMH does under the hood.)
 
 My JUnit tests do some priming too,
 not as correct as in JMH, I'm sure, but it helps a little anyway.
 
-So this much about measuring at this stage.
+I'll explain my algorithms shortly and then go to the graphs.
 
 
-#Explaining my algorithm-specific sampling techniques
+# Algorithm-specific sampling techniques
 
-I was a bit misleading to speak about bleedsort above.
-My sorting turned into an orchestrated ensemble of sort strategies.
+I was a bit misleading to speak about bleedsort,
+since my sort turned into an orchestrated ensemble of sort strategies.
 
 From [bleedsort3](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort3.java)
-upwards, my sorts sample a target array in multiple ways which I'll explain shortly.
+upwards, my sorts sample a target array in not one but many ways.
 
 For bleedsorts, as [distribution sorts](),
 the **amount of repetition** in an array is a key question.  A relatively
@@ -120,7 +124,7 @@ unique array will map neatly on a scale, but if there are many densely packed
 places and duplicate items, bleedsorts will plunge to suboptimal pit.
 
 This is why I needed to estimate the amount of repetition found in a dataset.
-My original idea was to take **twenty** patches of **100** items
+My original idea was to **take twenty patches of 100 items**
 from the target array
 and calculate average repetition per value from this sample.
 It was not enough.
@@ -135,7 +139,7 @@ As a teaser however I wrote a
 that beats Arrays.sort when sorting sine waves of small frequences.
 
 The second thing that I sampled was quite naturally data distribution.
-In bleedsort1 I started simply from **three quantiles**, 0th, 50th, and 100th.
+In bleedsort1 I started with three quantiles, 0th, 50th, and 100th.
 This of course meant a very bad estimate for many kinds of data.
 In bleedsort2 I used **five quantiles** 0, 25, 50, 75, and 100.
 In bleedsort3 I switched to **nine quantiles** 0, 12.5, 25, ... , 100
@@ -173,7 +177,7 @@ sampling gets gradually insignificant and its benefits start to weigh more.
 Bleedsort4 and 3 are explained above.
 [InntTree](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/InntTree.java)
 is a tailored ordered static-depth counting tree
-with ```O(1)``` puts and gets within theoretical "clean" complexity, not taking
+with ```O(1)``` puts and gets within "theoretical clean complexity", not taking
 memory management into account. Iteration is not ```O(1)``` but it is still in practise
 very fast.  InntTree is robust in some problems but must be used with some caution.
 A big and evenly spread data range increases
@@ -224,41 +228,38 @@ Bleedsort4 slope is especially favorable
 towards large *n*'s.  Array size remains 100,000 throughout the following benchmarks:
 
 ![bin-05-ie5](/assets/img/bleedsort4/bin-05-ie5.png)
-*Chart 2: Binomial distribution sort times with respect to n*
 
 With small *n*'s and array size 100,000, Arrays.sort dominates up to n=15,
 but bleedsorts give more constant performance when n grows:
 
 ![bin-025-1e5](/assets/img/bleedsort4/bin-025-1e5.png)
-*Chart 3: Binomial distribution, moderate array, small n's*
 
-To create data that is more difficult to sort, I benchmarked some
+To get a feel for slightly more difficult data, I benchmarked some
 [bimodal binomial distributions](https://en.wikipedia.org/wiki/Multimodal_distribution).
 
 Already with small arrays of 5000 items with
 n growing, Arrays.sort starts to slow down in comparison with more constantly performing
-bleedsorts.  Arrays.sort however is recommendable for
+bleedsorts.  Arrays.sort seemed faster on these
 ```bin(p,n)+bin(1-p,n)``` when n < 3000 and array size < 10000:
 
 ![bin2-p010-5000](/assets/img/bleedsort4/bin2-p010-5000.png)
-*Chart 4: Sorting bimodal binomial distribution ```bin(0.1,n)+bin(0.9,n)``` for various n, array size 5000*
 
 With somewhat larger arrays bleedsorts start to win with much smaller *n*'s,
 around n=15:
 
 ![bin2-p020-5e4](/assets/img/bleedsort4/bin2-p020-5e4.png)
-*Chart 5: Sorting bimodal binomial distribution  ```bin(0.2,n)+bin(0.8,n)``` for various n, array size 50,000*
 
-Sort times of big arrays can be three to four times faster with bleedsorts than with Arrays.sort,
+Sort times of big binomial arrays can be three to four times faster with bleedsorts than with Arrays.sort,
 when n is moderately big.  
 
 On the other hand when n is very small (array consists of a few distinct values like
-in the following example), Arrays.sort performs better or nearly same.
-Bleedsort5 performs better though due to
-[SmallRangeInntTree](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/SmallRangeInntTree.java).
+in the following example), Arrays.sort performs better than bleedsorts or nearly same.
 
 ![bin2-p025.png](/assets/img/bleedsort4/bin2-p025.png)
-*Chart 6: Sorting bimodal binomial distribution ```bin(0.25,10)+bin(0.75,10)```*
+
+Wishing to compete with this I covered some new
+special cases in the decision phase of Bleedsort5 (which slightly degraded performance
+in some other problems).
 
 ![bs5-bin2-025-10.png](/assets/img/bleedsort4/bs5-bin2-025-10.png)
 
@@ -266,33 +267,32 @@ It is an interesting fact to note that Arrays.sort (quicksort) finds a de-center
 easier to sort than a cluttered one, at least when data is randomly placed:
 
 ![bin2-n5000-5e6](/assets/img/bleedsort4/bin2-n5000-5e6.png)
-*Chart 7: Bimodal binomial distribution, effect of shifting the peaks*
+
+Of course, quicksort performance was also degrading when binomial n was increasing,
+illustrated earlier.
 
 ##Uniform distributions
 
-Uniform distributions are easy to generate.  Sorting might be needed with 3D scenes or
+Uniform distributions are easy to generate (with the exception of super-uniform data...).
+Sorting might be needed with 3D scenes or
 other spatially or temporally ordered series of events.
 
 Bleedsort performance seemed competitive up to 2e7 arrays,
 but then something strange happened:
 
 ![rnd-u.png](/assets/img/bleedsort4/rnd-u.png)
-*Chart 8: Sorting uniform distribution ```U(0,x)``` where x = array size*
 
-Actually there is a bug in sampling code that is frozen
-with Bleedsort4 for this post.  I have a [fix](https://github.com/pvto/java-sort-experiments/commit/4490bdf11f3bf27d43f0d45bb534fd6b9d29b335)
-for this in an upper version, but it is not tested yet.  I will release at least
-one new version, since there are some further ideas pending on my mind.
+Actually there is a bug in sampling code that was frozen
+for Bleedsort4.  I made a [fix](https://github.com/pvto/java-sort-experiments/commit/4490bdf11f3bf27d43f0d45bb534fd6b9d29b335)
+for this in 4b and tested it a little in 5 (graph not available).
 
-To get back to uniform distributions, the following two charts show how
-when U distributes over a wider range, bleedsort4 heuristics shines over bleedsort3
+Following two charts show how
+when U distributes over a wide range, bleedsort4 heuristics shines over bleedsort3
 and Arrays.sort:
 
 ![rnd-scatter-1e6.png](/assets/img/bleedsort4/rnd-scatter-1e6.png)
-*Chart 9: Sorting scattered uniform distribution ```U(0,1e^x * 1e6)```, array size 1,000,000*
 
 ![rnd-scatter-1e5.png](/assets/img/bleedsort4/rnd-scatter-1e5.png)
-*Chart 10: Sorting scattered uniform distribution ```U(0,1e^x * 1e5)```, array size 100,000*
 
 Next I wanted to vary the simple uniform distribution to make it appear more like
 some real datasets.
@@ -304,28 +304,30 @@ This increases repetition in the array.
 In these kinds of problems, Arrays.sort won clearly over bleedsorts.
 I analyzed this a bit and found that it is a sampling problem.
 Bleedsort could pick another sort strategy, but signs of repetition are lost
-into the haystack of a big array.  For this I have a fix waiting for new tests.
+into the haystack of a big array.  For this I created the longer sampling runs
+described in an earlier section.
 
-It is interesting to note that both bleedsorts and Arrays.sort start to perform better,
+It is interesting to note that both bleedsorts and quicksort (Arrays.sort) start to perform better,
 when data reduplication increases.
 
 ![rnd-simil-1e6.png](/assets/img/bleedsort4/rnd-simil-1e6.png)
-*Chart 11: Sorting uniform distribution U(0,1e6), array size 1e6, with x\*1e6 random reduplications*
 
-I made also experiments with ```U^x``` type of distributions, which are plotted next.
-I will not discuss them here though.
+![bs4-u-simil-1e6.png](/assets/img/bleedsort4/bs4-u-simil-1e6.png)
+
+I also made experiments with ```U^x``` type distributions, which are plotted next.
 
 ![rnd-simil-exp-4-ie5.png](/assets/img/bleedsort4/rnd-simil-exp-4-ie5.png)
-*Chart 12: Sorting U^4 distribution*
 
 ![rnd-exp-dupl-2e4-3e4.png](/assets/img/bleedsort4/rnd-exp-dupl-2e4-3e4.png)
-*Chart 13: Sorting U^x distributions (experimental feature pending)*
 
-##Monotonously decreasing arrays, with added noise
+![bs4-upowx-3e4.png](/assets/img/bleedsort4/bs4-upowx-3e4.png)
+
+![bs5-u-exp-3e4.png](/assets/img/bleedsort4/bs5-u-exp-3e4.png)
+
+##Decreasing arrays, with added noise
 
 Sorting decreasing arrays is one classical benchmark for sort robustness.  Some
 otherwise performant algorithms are reduced to an awful mess by this problem.
-Quicksort in its classical and two-pivot versions handles them elegantly.
 
 Here are some benchmarks from these kinds of tasks.
 
@@ -338,3 +340,18 @@ Here are some benchmarks from these kinds of tasks.
 ![decr-2e7.png](/assets/img/bleedsort4/decr-2e7.png)
 
 ##Sinusoidal waves
+
+Java quicksort is especially robust with long monotonously increasing or
+decreasing runs of values, as it does some preprocessing and then resorts to
+a very fast, optimized mergesort.
+
+![bs5-sin-f1.png](/assets/img/bleedsort4/bs5-sin-f1.png)
+
+As error (replacements, random copying) increases, the profit from this optimization
+decreases.
+
+![sin-points-1e5.png](/assets/img/bleedsort4/sin-points-1e5.png)
+
+![sin-swap1e-4-1e5.png](/assets/img/bleedsort4/sin-swap1e-4-1e5.png)
+
+Thanks for your time!
