@@ -9,6 +9,11 @@ tags : [sorting, sort algorithms, optimization, java, java 8, bleedsort, treesor
 After blogging about the possibility of [beating Java sort performance](/java/2015/08/17/beating-java-sort-performance/),
 I got really obsessed to prove my case with **integers**.
 
+To start where I left in the earlier post,
+below is a series of plots of binomial benchmarks that the first version of
+bleedsort did so poorly on.
+(plots: [R](https://www.r-project.org/)).
+
 Starting from my earlier code, I created new versions of bleedsort
 [2](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort2.java)
 [3](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort3.java)
@@ -23,18 +28,13 @@ If you look at the benchmarks [3](https://github.com/pvto/java-sort-experiments/
 [4b-2](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-4b2-times.txt)
 [5](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-5-times.txt),
 there are many kinds of errors
-and biases in them.  
-My results are not scientifically accurate, but they indicate that a great deal
+and biases in them.
+My results indicate that a great deal
 can be done towards a robust general intelligence for sorting large arrays.
+These are not perfectly accurate measurements.
 What I wanted was quick insight into my developing algorithms,
-not a solid record of their value.  More thorough data could be gathered later if I succeeded
+not a solid record of value.  More thorough data could be gathered later if I succeeded
 well enough.
-
-This post is really a wall of text followed by a wall of graphs.
-To start where I left in the earlier post,
-here's a series of plots of binomial benchmarks that the first version of
-bleedsort did so poorly on.
-(plots: [R](https://www.r-project.org/)).
 
 ![~bin(0.1, 10000), bleedsort4](/assets/img/bleedsort4/bin-01-n.png)
 
@@ -108,7 +108,7 @@ which is perhaps one of the things that JMH does under the hood.)
 My JUnit tests do some priming too,
 not as correct as in JMH, I'm sure, but it helps a little anyway.
 
-I'll explain my algorithms shortly and then go to the graphs.
+I'll explain my algorithms shortly and then we'll get to the graphs.
 
 
 # Algorithm-specific sampling techniques
