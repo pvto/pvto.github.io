@@ -8,8 +8,6 @@ tags : [sorting, sort algorithms, optimization, java, java 8, bleedsort, treesor
 
 After blogging about the possibility of [beating Java sort performance](/java/2015/08/17/beating-java-sort-performance/),
 I got really obsessed to prove my case with **integers**.
-My results are not scientifically accurate, but they indicate that a great deal
-can be done towards a robust general intelligence for sorting large arrays.
 
 Starting from my earlier code, I created new versions of bleedsort
 [2](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/BleedSort2.java)
@@ -25,7 +23,10 @@ If you look at the benchmarks [3](https://github.com/pvto/java-sort-experiments/
 [4b-2](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-4b2-times.txt)
 [5](https://github.com/pvto/java-sort-experiments/blob/master/bleedsort-5-times.txt),
 there are many kinds of errors
-and biases in them.  What I wanted was quick insight into my developing algorithms,
+and biases in them.  
+My results are not scientifically accurate, but they indicate that a great deal
+can be done towards a robust general intelligence for sorting large arrays.
+What I wanted was quick insight into my developing algorithms,
 not a solid record of their value.  More thorough data could be gathered later if I succeeded
 well enough.
 
