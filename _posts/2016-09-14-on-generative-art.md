@@ -9,7 +9,7 @@ tags : [generative art, coding, expression]
 ![2016-09-12-22-35-mosaic-misty-city-julia-ACZ](/assets/img/on-generative-art/2016-09-12-22-35-mosaic-misty-city-julia-ACZ.png)
 ```
 frame {
-  *{{n=29} x -.5 y -.5}
+  *{ {n=29} x -.5 y -.5}
     (n)*{x 1/n} (n)*{y 1/n}
       R4{ shading misty_city_by_sea   // this shading takes parameters col0, SAT
           col0 julia(x/5, y/5, 0, .75) / 256
