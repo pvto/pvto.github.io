@@ -84,13 +84,16 @@ fov {z -1.1 x -.5/n y -.5/n}
 frame {
   *{x -.5 y -.5}
   (n)*{x 1/n} (n)*{y 1/n}
-    *{shading misty_city_by_sea
-      col0 julia(x/5,y/5, 0, im)/256
-      {SAT=julia(x*2.5,y*2.75, 0, im)/256
+    R4{ shading misty_city_by_sea
+        col0 julia(x/5,y/5, 0, im)/256
+      { D=4;
+        SAT=julia(x*2.5,y*2.75, 0, im)/256
            *julia((x+.1)*2.5,(y+.1)*2.75, 0, im)/256
            *julia((x+.2)*2.5,(y-.3)*2.75, 0, im)/50
       }
-    } R4{{D=4} s 1.2/n PUSH sub}
+        s 1.2/n
+        PUSH sub
+    }
 }
 sub .3 { sub{{SAT=SAT-.1}} }
 sub 3 { sub{col0 (col0+.1)} }
