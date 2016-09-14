@@ -6,7 +6,7 @@ tags : [generative art, coding, expression]
 ---
 {% include JB/setup %}
 
-![2016-09-12-22-35-mosaic-misty-city-julia-ACZ](/assets/img/on-generative-art/2016-09-12-22-35-mosaic-misty-city-julia-ACZ.png)
+![2016-09-14-22-34-mosaic-misty-city-julia-AAF](/assets/img/on-generative-art/2016-09-14-22-34-mosaic-misty-city-julia-AAF.png)
 
 <pre class="smaller-text">
 frame {
@@ -73,6 +73,29 @@ marked by heightened interaction with its spatial environment, for the mind.
 In this way generative art is like Plato's universe,
 at the same time material and visible
 and then observable for the mind in its inner essence.
+
+![2016-09-14-22-39-mosaic-misty-city-julio-AAW](/assets/img/on-generative-art/2016-09-14-22-39-mosaic-misty-city-julio-AAW.png)
+
+<pre class="smaller-text">
+DEF n 29
+DEF im .91
+fov {z -1.1 x -.5/n y -.5/n}
+
+frame {
+  *{x -.5 y -.5}
+  (n)*{x 1/n} (n)*{y 1/n}
+    *{shading misty_city_by_sea
+      col0 julia(x/5,y/5, 0, im)/256
+      {SAT=julia(x*2.5,y*2.75, 0, im)/256
+           *julia((x+.1)*2.5,(y+.1)*2.75, 0, im)/256
+           *julia((x+.2)*2.5,(y-.3)*2.75, 0, im)/50
+      }
+    } R4{{D=4} s 1.2/n PUSH sub}
+}
+sub .3 { sub{{SAT=SAT-.1}} }
+sub 3 { sub{col0 (col0+.1)} }
+sub { SQUARE{s 1.2} }
+</pre>
 
 Generative art will, I hope,
 defy reduction to market/cult value or some such similar thing,
