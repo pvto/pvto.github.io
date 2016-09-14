@@ -7,7 +7,8 @@ tags : [generative art, coding, expression]
 {% include JB/setup %}
 
 ![2016-09-12-22-35-mosaic-misty-city-julia-ACZ](/assets/img/on-generative-art/2016-09-12-22-35-mosaic-misty-city-julia-ACZ.png)
-```
+
+<pre class="smaller-text">
 frame {
   *{ {n=29} x -.5 y -.5}
     (n)*{x 1/n} (n)*{y 1/n}
@@ -25,7 +26,7 @@ frame {
 sub .3 { sub{{SAT=SAT-.1}} }
 sub 3 { sub{col0 (col0+.1)} }
 sub { SQUARE{s 1.2} }
-```
+</pre>
 
 A friend linked [an excellent essay](http://inconvergent.net/generative/)
 from Anders Hoff, a Norwegian generative artist,
