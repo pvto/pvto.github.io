@@ -13,7 +13,7 @@ tagline: Experiments, code
   {% endfor %}
 </ul>
 
-###Thanks for reading!
+### Thanks for reading!
 (You can contact me if you did not understand something or would like to toss up some points.)
 
 
@@ -28,7 +28,5 @@ tagline: Experiments, code
    &raquo; <a href="http://dev.solita.fi/2014/09/01/infographs-with-d3js.html">Why infographs have an edge?</a>
    &raquo; <a href="http://dev.solita.fi/2014/06/30/writing-compact-java.html">Writing Compact Java with functions and data</a>
    &raquo; <a href="http://dev.solita.fi/2014/04/01/on-library-communication.html">Communication in library design, a user's perpective</a></li>
-  
+
 </ul>
-
-
