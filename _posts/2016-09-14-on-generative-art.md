@@ -1,7 +1,7 @@
 ---
 layout: post
 category : art
-tagline: "Musings about the philosophy of expression in a computational world"
+tagline: "Musings about the philosophy of expression in generative art."
 tags : [generative art, coding, expression]
 ---
 {% include JB/setup %}
@@ -11,7 +11,7 @@ It is quite easy to reduce in your mind to "technology",
 to a bunch of possibly intimidating tools.
 But if it expresses well the relation of the creative process
 and a piece of art – and does this in an interesting way –
-it might have its magic cake and eat it too.
+well...
 
 A friend linked [an excellent essay](http://inconvergent.net/generative/)
 from Anders Hoff, a Norwegian generative artist,
