@@ -32,6 +32,10 @@ h1 {
 
 }
 
+h3 {
+  font-size: 100%;  
+}
+
 p {
   margin: 0.5em 0;
 }
@@ -221,3 +225,8 @@ ul.posts {
 .bg-green {  background-color: #00ff00; }
 .fg-green {  color: #00d000; }
 .smaller-text { font-size: 60%; }
+
+.free-page img {
+  margin: 1em;
+  text-align: center;
+}
