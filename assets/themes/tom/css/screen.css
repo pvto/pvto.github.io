@@ -17,13 +17,13 @@ html, body {
 
 body {
   background-color: white;
-  font: 13.34px helvetica, arial, clean, sans-serif;
+  font: 16px 'PT Sans', helvetica, arial, clean, sans-serif;
   *font-size: small;
   text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
+  font-size: 150%;
 }
 
 h1 {
@@ -218,4 +218,4 @@ ul.posts {
 .fg-red {  color: #ff0000; }
 .bg-green {  background-color: #00ff00; }
 .fg-green {  color: #00d000; }
-.smaller-text { font-size: smaller; }
+.smaller-text { font-size: 60%; }
