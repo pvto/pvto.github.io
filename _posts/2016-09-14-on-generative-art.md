@@ -6,12 +6,12 @@ tags : [generative art, coding, expression]
 ---
 {% include JB/setup %}
 
-I think generative art has one intrinsic fallacy.
+*I think generative art has one intrinsic fallacy.
 It is quite easy to reduce in your mind to "technology",
 to a bunch of possibly intimidating tools.
 But if it expresses well the relation between a creative process
 and a piece of art – and does this in an interesting way –
-well...
+well...*
 
 A friend linked [an excellent essay](http://inconvergent.net/generative/)
 from Anders Hoff, a Norwegian generative artist,
@@ -20,7 +20,7 @@ knowing that I've been working on some
 for some time now. It inspired me to write down some thoughts of my own.
 In case you would like to dwell more with the philosophical part,
 my aesthetics in this essay is inspired partly by
-[Roman Ingarden](https://en.wikipedia.org/wiki/Roman_Ingarden),
+[Roman Ingarden](https://en.wikipedia.org/wiki/Roman_Ingarden).
 
 I am an avid drawer, so generative art has a peculiar fascination for me –
 not just the pleasure of beautiful and specially charged things,
