@@ -33,7 +33,7 @@ h1 {
 }
 
 h3 {
-  font-size: 100%;  
+  font-size: 100%;
 }
 
 p {
@@ -227,6 +227,13 @@ ul.posts {
 .smaller-text { font-size: 60%; }
 
 .free-page img {
-  margin: 1em;
-  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+
+.free-page .img-text {
+  text-align:center;
+  width: 75%;
+  font-style: italic;
 }
