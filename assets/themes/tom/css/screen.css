@@ -227,6 +227,7 @@ ul.posts {
 .smaller-text { font-size: 60%; }
 
 .free-page img {
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   width: 75%;
@@ -234,6 +235,11 @@ ul.posts {
 
 .free-page .img-text {
   text-align:center;
-  width: 75%;
+  width: 100%;
   font-style: italic;
+}
+
+.center {
+  width: 100%;
+  text-align: center;
 }
