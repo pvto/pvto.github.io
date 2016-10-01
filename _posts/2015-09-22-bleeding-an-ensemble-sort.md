@@ -44,7 +44,7 @@ well enough.
 
 I have ```20*x``` (x≥1) measurements for each data point in all pictures.
 
-#Benchmarks: fallibility and other concerns
+# Benchmarks: fallibility and other concerns
 
 As of earlier I was running benchmarks with [JMH](http://openjdk.java.net/projects/code-tools/jmh/).
 It is an established microbenchmark framework
@@ -151,7 +151,7 @@ to get nine quantile estimates.
 They provide some fast solutions for algorithm choice.
 They are also used by bleedsorts.
 
-#Algorithms
+# Algorithms
 
 Here's a picture of the sort paths of the bleedsort4 ensemble.
 
@@ -195,7 +195,7 @@ sampling and selection in bleedsort4.
 
 ![bleedsort4 ensemble](/assets/img/bleedsort4/bs_sampling.png)
 
-#Data
+# Data
 
 I describe here what kinds of distributions and arrangements I tested so far.
 I refrained to sorting 32 bit signed integers, as said,
@@ -213,7 +213,7 @@ responsible for each result.
 The decision is nowadays stored by the benchmark script,
 but it was not when I ran some of these benchmarks.
 
-##Binomial distributions
+## Binomial distributions
 
 My first mission was to get binomial distributions very fast.  There is a normal distribution
 near to a binomial distribution with sufficiently large values of *n*, so binomial
@@ -272,7 +272,7 @@ easier to sort than a cluttered one, at least when data is randomly placed:
 Of course, quicksort performance was also degrading when binomial n was increasing,
 illustrated earlier.
 
-##Uniform distributions
+## Uniform distributions
 
 Uniform distributions are easy to generate (with the exception of super-uniform data...).
 Sorting might be needed with 3D scenes or
@@ -325,7 +325,7 @@ I also made experiments with ```U^x``` type distributions, which are plotted nex
 
 ![bs5-u-exp-3e4.png](/assets/img/bleedsort4/bs5-u-exp-3e4.png)
 
-##Decreasing arrays, with added noise
+## Decreasing arrays, with added noise
 
 Sorting decreasing arrays is one classical benchmark for sort robustness.  Some
 otherwise performant algorithms are reduced to an awful mess by this problem.
@@ -340,7 +340,7 @@ Here are some benchmarks from these kinds of tasks.
 
 ![decr-2e7.png](/assets/img/bleedsort4/decr-2e7.png)
 
-##Sinusoidal waves
+## Sinusoidal waves
 
 Java quicksort is especially robust with long monotonously increasing or
 decreasing runs of values, as it does some preprocessing and then resorts to

@@ -8,6 +8,9 @@ tags : [java, java 8, sort algorithms, optimization, bleedsort, quicksort, Paavo
 
 *Library sorts in Java 8 are well optimized. For integers and other primitives, ```Arrays.sort()``` uses a mixed strategy of [two-pivot quicksort](http://epubs.siam.org/doi/abs/10.1137/1.9781611972931.5), merge sort, and insertion sort that is guided by some heuristics.  It is a robust generic solution.  Large arrays however have variety that supports even more algorithmic variation.  I conducted some experiments to see if my own hastily coded sorts could compete with Java.  They did under specific conditions.*
 
+<div></div>
+
+
 Firstly I [implemented](https://github.com/pvto/java-sort-experiments/blob/master/src/main/java/util/sort/QuickSort.java) a [classical quicksort](https://en.wikipedia.org/wiki/Quicksort).  It approximates array median from a sampled mean, using it as an initial pivot.  
 
 I cheated a little then and adopted something from Java, making my quicksort fall back to insertion sort with small subarrays.  After this I got some sort-times in the same order of magnitude as Java's.  [Wild & al](http://epubs.siam.org/doi/abs/10.1137/1.9781611972931.5) suggest that the classical quicksort could perform better than two-pivot quicksort on data with many duplicates.  I did not attempt any profiling or bytecode/assembler level optimization.  My version would lag behind the highly optimized library routine in most problems.

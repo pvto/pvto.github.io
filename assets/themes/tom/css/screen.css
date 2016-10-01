@@ -22,10 +22,19 @@ body {
   text-align: center;
 }
 
+
 h1, h2, h3, h4, h5, h6 {
   font-size: 150%;
   margin-top: 1.5em;
   margin-bottom: 0.25em;
+}
+.free-page>h1, .free-page>h2, .free-page>h3, .free-page>h4, .free-page>h5, .free-page>h6,
+.free-page>p, .free-page>pre,
+#post>h1, #post>h2, #post>h3, #post>h4, #post>h5, #post>h6,
+#post>p, #post>pre
+{
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 h1 {
@@ -40,8 +49,19 @@ h3 {
   font-size: 100%;
 }
 
-p {
-  margin: 0.5em 0;
+.free-page>p, #post>p {
+  text-indent: 1.5em;
+}
+.free-page>h1+p, .free-page>h2+p, .free-page>h3+p, .free-page>div+p,
+#post>h1+p, #post>h2+p, #post>h3+p, #post>div+p, #post>pre+p {
+  text-indent: 0em;
+  margin-top: 1em;
+}
+/* upcoming, does not work yet :( */
+#post p:has(img) { text-indent: 0em; }
+
+p::first-line {
+  /*letter-spacing: 1px;*/
 }
 
 a {
@@ -256,12 +276,14 @@ ul.posts {
   margin-top: 2em;
   width: 100%;
   font-style: italic;
+  font-size: 15px;
 }
 .quote p {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
   text-align: justify;
+  text-indent: 0em;
 }
 
 .smaller {

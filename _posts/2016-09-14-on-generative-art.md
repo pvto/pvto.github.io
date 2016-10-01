@@ -13,6 +13,9 @@ But if it expresses well the relation between a creative process
 and a piece of art – and does this in an interesting way –
 well...*
 
+<div></div>
+
+
 A friend linked [an excellent essay](http://inconvergent.net/generative/)
 from Anders Hoff, a Norwegian generative artist,
 knowing that I've been working on some
