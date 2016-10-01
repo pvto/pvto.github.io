@@ -32,6 +32,10 @@ h1 {
 
 }
 
+h2 {
+  font-size: 125%;
+}
+
 h3 {
   font-size: 100%;
 }
@@ -228,9 +232,10 @@ ul.posts {
 
 .free-page img {
   text-align: center;
+  margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
-  width: 75%;
+  width: 65%;
 }
 
 .free-page .img-text {
@@ -242,4 +247,23 @@ ul.posts {
 .center {
   width: 100%;
   text-align: center;
+}
+
+.right, .quote .right {
+  text-align: right;
+}
+.quote {
+  margin-top: 2em;
+  width: 100%;
+  font-style: italic;
+}
+.quote p {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+}
+
+.smaller {
+  font-size: smaller;
 }
