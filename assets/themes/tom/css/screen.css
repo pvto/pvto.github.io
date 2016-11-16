@@ -29,14 +29,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.5em;
   margin-bottom: 0.25em;
 }
-.free-page>h1, .free-page>h2, .free-page>h3, .free-page>h4, .free-page>h5, .free-page>h6,
-.free-page>p, .free-page>pre,
-#post>h1, #post>h2, #post>h3, #post>h4, #post>h5, #post>h6,
-#post>p, #post pre
-{
-  margin-left: 0px;
-  margin-right: 0px;
-}
 
 h1 {
   font-size: 150%;
@@ -50,17 +42,15 @@ h3 {
   font-size: 100%;
 }
 
-.free-page>p, #post>p {
+.free-page>p+p, #post>p+p {
   text-indent: 1.5em;
 }
 .free-page>h1+p, #post>h1+p {
-  text-indent: 0em;
   margin-top: 0.5em;
 }
 
 .free-page>h2+p, .free-page>h3+p, .free-page>div+p,
 #post>h2+p, #post>h3+p, #post>div+p, #post>pre+p {
-  text-indent: 0em;
   margin-top: 1em;
 }
 /* upcoming, does not work yet :( */
