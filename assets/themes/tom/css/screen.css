@@ -17,13 +17,14 @@ html, body {
 
 body {
   background-color: white;
-  font: 16px 'PT Sans', helvetica, arial, clean, sans-serif;
+  font: 17px 'PT Sans', helvetica, arial, clean, sans-serif;
   *font-size: small;
   text-align: center;
 }
 
 
 h1, h2, h3, h4, h5, h6 {
+  font: 17px 'PT Sans', helvetica, arial, clean, sans-serif;
   font-size: 150%;
   margin-top: 1.5em;
   margin-bottom: 0.25em;
@@ -31,14 +32,14 @@ h1, h2, h3, h4, h5, h6 {
 .free-page>h1, .free-page>h2, .free-page>h3, .free-page>h4, .free-page>h5, .free-page>h6,
 .free-page>p, .free-page>pre,
 #post>h1, #post>h2, #post>h3, #post>h4, #post>h5, #post>h6,
-#post>p, #post>pre
+#post>p, #post pre
 {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 h1 {
-
+  font-size: 150%;
 }
 
 h2 {
@@ -52,8 +53,13 @@ h3 {
 .free-page>p, #post>p {
   text-indent: 1.5em;
 }
-.free-page>h1+p, .free-page>h2+p, .free-page>h3+p, .free-page>div+p,
-#post>h1+p, #post>h2+p, #post>h3+p, #post>div+p, #post>pre+p {
+.free-page>h1+p, #post>h1+p {
+  text-indent: 0em;
+  margin-top: 0.5em;
+}
+
+.free-page>h2+p, .free-page>h3+p, .free-page>div+p,
+#post>h2+p, #post>h3+p, #post>div+p, #post>pre+p {
   text-indent: 0em;
   margin-top: 1em;
 }
@@ -64,16 +70,21 @@ p::first-line {
   /*letter-spacing: 1px;*/
 }
 
+.free-page>p img, #post>p img {
+  margin-left: -1.5em;
+  margin-top: 0.5em;
+}
+
 a {
-  color: #00a;
+  color: #000000;
 }
 
 a:hover {
-  color: black;
+  color: #404040;
 }
 
 a:visited {
-  color: #a0a;
+  color: #202020;
 }
 
 table {
@@ -118,8 +129,11 @@ ul.posts {
 
 .title {
   color: #a00;
-  font-weight: bold;
   margin-bottom: 2em;
+}
+
+.title img {
+  width: 100%;
 }
 
   .site .title a {
@@ -187,7 +201,13 @@ ul.posts {
   #post pre {
     border: 1px solid #ddd;
     background-color: #eef;
-    padding: 0 .4em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1em;
   }
 
   #post ul,
@@ -248,7 +268,17 @@ ul.posts {
 .fg-red {  color: #ff0000; }
 .bg-green {  background-color: #00ff00; }
 .fg-green {  color: #00d000; }
-.smaller-text { font-size: 60%; }
+.smaller-text {
+  font-size: 75%;
+  line-height: 1.333em;
+}
+#post pre.smaller-text {
+  line-height: 1.333em;
+  margin-top: 0.667em;
+  margin-bottom: 0.667em;
+  padding-top: 0.667em;
+  padding-bottom: 0.667em;
+}
 
 .free-page img {
   text-align: center;
