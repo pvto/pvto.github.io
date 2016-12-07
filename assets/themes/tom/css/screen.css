@@ -278,6 +278,14 @@ ul.posts {
   width: 90%;
 }
 
+img.mini {
+  width: 30%;
+}
+
+.mini p {
+  font-size: 10px;
+}
+
 .free-page .img-text {
   text-align:center;
   width: 100%;
