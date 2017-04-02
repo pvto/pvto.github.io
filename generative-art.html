@@ -74,10 +74,10 @@ for a somewhat spurious account of my artistic motivation.</p>
       t:"2017/02."},
 
     { h2:"Other simulations and imitations", id: "periods"},
+    { r:"assets/img/art/2017-04-02-11-08-part-sys-avgd-a-ACB.png",
+      t: "Particle system, 2017/04"},
     { r:"assets/img/art/2017-03-27-23-55-particle-system-d-ABM.png",
-      t:"Particle system, 2017/03"},
-    { r:"assets/img/art/2017-03-23-23-33-paint-w-l-shimmer-c-c5-ACE.png",
-      t:"School project, 2017/03"},
+      t:"Particle system, 2017/03", cl:"mini"},
     { r:"assets/img/art/2017-04-02-14-35-part-sys-avgd-abs-fish-ACJ.png",
       t:"Asemic writing (particle multisystems), 2017/04"},
     { r:"assets/img/art/2017-04-02-14-44-part-sys-avgd-abs-fish-AJL.png",
@@ -88,6 +88,8 @@ for a somewhat spurious account of my artistic motivation.</p>
       t:"Asemic writing (particle multisystems), 2017/04"},
     { r:"assets/img/art/2017-04-02-16-08-writ-c-BHF.png",
       t:"Asemic writing (particle multisystems), 2017/04"},
+    { r:"assets/img/art/2017-03-23-23-33-paint-w-l-shimmer-c-c5-ACE.png",
+      t:"School project, 2017/03", cl:"mini"},
     { r:"assets/img/art/2016-10-12-00-31-vangogh-mixing-rndcol-AHL.png"},
     { r:"assets/img/art/2016-10-12-00-31-vangogh-mixing-rndcol-AHJ.png",},
     { r:"assets/img/art/2016-10-12-00-31-vangogh-mixing-rndcol-AHG.png",
@@ -177,7 +179,7 @@ for a somewhat spurious account of my artistic motivation.</p>
       ulinks.append("a").attr("href", "#"+w.id).text(w.h2);
       if (w.p) { dd.append("p").text(w.p); }
     } else {
-      var tmp = dd.append("div").attr("class", "center "+(w.cl||""));
+      var tmp = dd.append("div").attr("class", "center artpiece "+(w.cl||""));
       tmp.append("a").attr("href", w.r)
         .append("img").attr("src", w.r).attr("class", (w.cl||""));
       if (w.t) { var p = tmp.append("p").attr("class", "img-text").text(w.t); }

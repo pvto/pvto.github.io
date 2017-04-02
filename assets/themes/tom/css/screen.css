@@ -292,6 +292,10 @@ img.mini {
   font-style: italic;
 }
 
+.free-page .artpiece {
+  margin-top: 2em;
+}
+
 .center {
   width: 100%;
   text-align: center;
