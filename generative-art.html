@@ -7,13 +7,14 @@ group: navigation
 {% include JB/setup %}
 
 <script type="text/javascript" src="assets/lib/d3.min.js"></script>
+<script type="text/javascript" src="assets/lib/lodash.js"></script>
 
 <div class="free-page">
 
-<h1>Generative Art</h1>
+<!-- <h1>Generative Art</h1> -->
 
 <p class="smaller" id="upper-links">
-&gt;&gt;
+<span>&gt;&gt;</span>
 </p>
 
 
@@ -34,16 +35,16 @@ group: navigation
 </div> -->
 
 <div></div>
-<p>All images displayed here are owned by Paavo Toivanen.
+<p id="copyright-essay">All images displayed here are owned by Paavo Toivanen.
 Please see an <a href="art/2016/09/14/on-generative-art">essay on generative art</a> in the blog,
 for a somewhat spurious account of my artistic motivation.</p>
 <div></div>
 
 
 <script>
-  var works = [
+  var w_frontpage = [
     { h2:"Surfaces", id:"surface",
-      p: "Many of the following pieces simulate surfaces of fabric, stone, canvas, and other materials."
+//      p: "Many of the following pieces simulate surfaces of fabric, stone, canvas, and other materials."
     },
     { r:"assets/img/art/2017-01-08-22-22-wc_hex-O-4-skies-D-4-ACA_.png",
       t:"Milky grid, variation ACA mid-render, 2017/01.",
@@ -51,43 +52,42 @@ for a somewhat spurious account of my artistic motivation.</p>
     { r:"assets/img/art/2017-01-13-00-20-paint-w-light-j2-AEW.png",
       t:"Milky grid on a concave surface, variation ACA/AEW, 2017/01.",
       cl: "mini"},
-    { r:"assets/img/art/2016-10-21-22-25-blue-smudge-all-det-JSU.png",
-      t:"Watercolors, dry brush, JSU, 2016/10.",
-      cl: "mini"},
-    { r:"assets/img/art/2017-01-13-00-39-paint-w-light-j8-AFA.png",
-      t:"Oils, 2016-17."},
+//    { r:"assets/img/art/2016-10-21-22-25-blue-smudge-all-det-JSU.png",
+//      t:"Watercolors, dry brush, JSU, 2016/10.", cl: "mini"},
     { r:"assets/img/art/2016-10-08-16-47-wc_hex-O-4-kqr-C-ABK.png",
       t:"Sandstone mosaic, variation ABK, 2016/10."},
-    { r:"assets/img/art/2016-10-23-21-56-stripes-checkers-wool-large-skyea-AIJ.png",
-      t:"Woollen tapestry, earth colors, AIJ, 2016/10."},
-    { r:"assets/img/art/2017-01-13-22-10-paint-w-l-shimmer-b-ACM.png",
-      t:"Fairy woodstuff b, 2017/01."},
-    { r:"assets/img/art/2017-01-13-21-40-paint-w-l-spiraling-d-AAZ.png",
-      t:"Heavy waves, 2017/01."},
+    { r:"assets/img/art/2017-01-13-00-39-paint-w-light-j8-AFA.png",
+      t:"Oils, 2016-17."},
     { r:"assets/img/art/2017-03-23-21-56-paint-w-l-shimmer-c-8-AAU.png",
       t:"Fabric, 2017/03."},
-    { r:"assets/img/art/2017-01-16-22-30-paint-w-l-spiraling-d2f-ABN.png",
-      t:"Waveforms, 2017/01."},
-    { r:"assets/img/art/2017-03-28-21-34-perlin-displaced-d-imgd-ACT.png",
-      t:"Perlin noise, 2017/03"},
+    { r:"assets/img/art/2017-01-13-22-10-paint-w-l-shimmer-b-ACM.png",
+      t:"Fairy woodstuff b, 2017/01."},
+    { r:"assets/img/art/2017-04-02-18-13-perlin-displaced-d-imgd-lighter-b-BPI.png",
+      t:"Perlin noise, 2017/03–04"},
+    { r:"assets/img/art/2016-10-23-21-56-stripes-checkers-wool-large-skyea-AIJ.png",
+      t:"Woollen tapestry, earth colors, AIJ, 2016/10."},
+    { r:"assets/img/art/2017-04-05-20-53-spir-perl-AAI.png",
+      t:"Waveforms, 2017/01–04.", sub:"/generative-art.html?subp=waveforms"},
+    { r:"assets/img/art/2017-01-13-21-40-paint-w-l-spiraling-d-AAZ.png",
+      t:"Heavy waves, 2017/01."},
     { r:"assets/img/art/2017-02-19-13-10-paint-w-l-shimmer-d-fisheye-b-AAI.png",
       t:"2017/02."},
 
-    { h2:"Other simulations and imitations", id: "periods"},
+    { h2:"Simulations and imitations", id: "periods"},
     { r:"assets/img/art/2017-04-02-11-08-part-sys-avgd-a-ACB.png",
       t: "Particle system, 2017/04"},
     { r:"assets/img/art/2017-03-27-23-55-particle-system-d-ABM.png",
       t:"Particle system, 2017/03", cl:"mini"},
     { r:"assets/img/art/2017-04-02-14-35-part-sys-avgd-abs-fish-ACJ.png",
-      t:"Asemic writing (particle multisystems), 2017/04"},
+      t:"Asemic writing (particle multisystems), 2017/04", sub:"/generative-art.html?subp=asemic"},
     { r:"assets/img/art/2017-04-02-14-44-part-sys-avgd-abs-fish-AJL.png",
-      t:"Asemic writing (particle multisystems), 2017/04"},
+      t:"Asemic writing (particle multisystems), 2017/04", sub:"/generative-art.html?subp=asemic"},
     { r:"assets/img/art/2017-04-02-14-59-writ-b-ARZ.png",
-      t:"Asemic writing (particle multisystems), 2017/04"},
+      t:"Asemic writing (particle multisystems), 2017/04", sub:"/generative-art.html?subp=asemic"},
     { r:"assets/img/art/2017-04-02-15-11-writ-c-AVM.png",
-      t:"Asemic writing (particle multisystems), 2017/04"},
+      t:"Asemic writing (particle multisystems), 2017/04", sub:"/generative-art.html?subp=asemic"},
     { r:"assets/img/art/2017-04-02-16-08-writ-c-BHF.png",
-      t:"Asemic writing (particle multisystems), 2017/04"},
+      t:"Asemic writing (particle multisystems), 2017/04", sub:"/generative-art.html?subp=asemic"},
     { r:"assets/img/art/2017-03-23-23-33-paint-w-l-shimmer-c-c5-ACE.png",
       t:"School project, 2017/03", cl:"mini"},
     { r:"assets/img/art/2016-10-12-00-31-vangogh-mixing-rndcol-AHL.png"},
@@ -112,8 +112,8 @@ for a somewhat spurious account of my artistic motivation.</p>
       t:"Tiger light, ACM, 2017/01."},
     { r:"assets/img/art/2016-11-29-22-04-bulges-AAQ.png",
       t:"Random hat factory, AAQ, 2016/11."},
-    { r:"assets/img/art/2017-02-18-21-47-contour-figure-colossus-placed-C-ADG.png",
-      t:"Hatted figurine, ADG, 2016/2017.", cl:"mini"},
+//    { r:"assets/img/art/2017-02-18-21-47-contour-figure-colossus-placed-C-ADG.png",
+//      t:"Hatted figurine, ADG, 2016/2017.", cl:"mini"},
 
     { h2:"Landscapes", id:"landscapes"},
     { r:"assets/img/art/2016-10-23-12-47-blue-painting-4-B-AAE.png",
@@ -125,14 +125,14 @@ for a somewhat spurious account of my artistic motivation.</p>
       t:"Letter, 2017/01."},
     { r:"assets/img/art/2017-01-21-15-02-subdiv-rupt-AFF.png",
       t:"634, 2017/01."},
-    { r:"assets/img/art/2017-02-04-14-01-circ_div_doh-b-z-ACB.png",
-      t:"2017/01.", cl: "mini"},
+//    { r:"assets/img/art/2017-02-04-14-01-circ_div_doh-b-z-ACB.png",
+//      t:"2017/01.", cl: "mini"},
     { r:"assets/img/art/2017-03-15-21-07-subdiv-rupt-8-ABH.png",
       t:"2017/03."},
     { r:"assets/img/art/2017-02-18-22-15-subdivs-windows-b-AEG.png",
       t:"2017/02"},
-    { r:"assets/img/art/2017-03-17-20-26-subdiv-rupt-8f-ACL.png",
-      t:"2017/03", cl:"mini"},
+//    { r:"assets/img/art/2017-03-17-20-26-subdiv-rupt-8f-ACL.png",
+//      t:"2017/03", cl:"mini"},
 
     { h2:"Fractal procedures", id:"fractal"},
     { r:"assets/img/art/2016-09-24-14-36-sierp-textp-subtri-b-ACU.png", cl:"mini"},
@@ -168,6 +168,59 @@ for a somewhat spurious account of my artistic motivation.</p>
       s:"echtbirt.html" }
   ];
 
+  var w_waveforms = [
+    { h2:"Waveforms series", id: "waveforms"},
+    { r:"assets/img/art/2017-01-16-22-30-paint-w-l-spiraling-d2f-ABN.png",
+      t:"Waveforms, 2017/01."},
+    { r:"assets/img/art/2017-04-05-20-53-spir-perl-AAI.png",
+      t:"Waveforms, 2017/04."},
+    { r:"assets/img/art/2017-04-05-21-05-spir-perl-AAQ.png",
+      t:"Waveforms, 2017/04."},
+    { r:"assets/img/art/2017-04-05-21-12-spir-perl-AAV.png",
+      t:"Waveforms, 2017/04."},
+  ];
+
+  var w_asemic = [
+    { r:"assets/img/art/2017-04-05-23-35-scribble-10abcde-BIJ.png",
+      t:"Signatures"},
+    { r:"assets/img/art/2017-04-06-00-09-scribble-10-long-dense-zoomed-b-BPU.png",
+      t:"Signatures, old fashioned"},
+    { r:"assets/img/art/2017-04-06-00-11-scribble-10-long-dense-zoomed-b-BQK.png",
+      t:"Pen is not working?"},
+    { r:"assets/img/art/2017-04-05-22-50-scribble-10a-AHB.png",
+      t:"Overlapping"},
+    { r:"assets/img/art/2017-04-06-00-12-scribble-10-long-dense-zoomed-b-BQS.png",
+      t:"Tags and doodles"},
+    { r:"assets/img/art/2017-04-05-23-58-scribble-10-long-BMV.png",
+      t:"Unknown logograms?"},
+    { r:"assets/img/art/2017-04-06-00-00-scribble-10-long-BNL.png",
+      t:"Figures"},
+    { r:"assets/img/art/2017-04-05-23-24-scribble-10abcd-BBK.png",
+      t:"Äsch!"},
+    { r:"assets/img/art/2017-04-06-00-16-scribble-10-long-dense-zoomed-bcd-BRO.png",
+      t:"Novella"},
+    { r:"assets/img/art/2017-04-06-00-19-scribble-10-long-dense-zoomed-bcd-BSU.png",
+      t:"Class roster"},
+  ];
+
+  var subs = {
+    "waveforms": w_waveforms,
+    "asemic": w_asemic,
+  };
+
+  var qparams = getQueryParams();
+
+  var works = w_frontpage;
+  if (qparams.subp) {
+    works = subs[qparams.subp] || w_frontpage;
+    if (qparams.subp !== "frontpage") {
+      var ul = d3.select("#upper-links");
+      ul.insert("span", ":first-child").text(qparams.subp + " ").attr("class", "sub-page-h");
+      ul.insert("a", ":first-child").attr("href", "/generative-art.html").text("<<Back | ");
+      d3.select("#copyright-essay").remove();
+    }
+  }
+
   var ulinks = d3.select("#upper-links");
   var dd = d3.select(".free-page");
   var ti = [0];
@@ -180,12 +233,21 @@ for a somewhat spurious account of my artistic motivation.</p>
       if (w.p) { dd.append("p").text(w.p); }
     } else {
       var tmp = dd.append("div").attr("class", "center artpiece "+(w.cl||""));
-      tmp.append("a").attr("href", w.r)
-        .append("img").attr("src", w.r).attr("class", (w.cl||""));
-      if (w.t) { var p = tmp.append("p").attr("class", "img-text").text(w.t); }
-      if (w.s) { p.append("a").attr("href", w.s).text(""); }
+      tmp.append("a").attr("href", ((w.sub||w.back) ? (w.sub||w.back) : w.r))
+        .append("img").attr("src", w.r).attr("class", (w.cl||"")+(w.sub?" sublink":""));
+      if (w.t) { var p = tmp.append("p").attr("class", "img-text").text(w.t + " "); }
+      if (w.s) { p.append("a").attr("href", w.s).text("[source]"); }
     }
   });
+
+  function getQueryParams() {
+      var q = window.location.search.substring(1);
+      var list = q.split("&").map(function(d){return d.split("=");});
+      var map = _.fromPairs(list);
+      return map;
+  }
+
+
 </script>
 
 </div>
