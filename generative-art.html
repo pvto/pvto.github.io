@@ -52,19 +52,21 @@ for a somewhat spurious account of my artistic motivation.</p>
       sub:"/generative-art.html?subp=hexwall"},
     { r:"assets/img/art/2017-03-23-21-56-paint-w-l-shimmer-c-8-AAU.png",
       t:"Fabric, 2017/03."},
-    { r:"assets/img/art/2017-01-13-22-10-paint-w-l-shimmer-b-ACM.png",
-      t:"Fairy woodstuff b, 2017/01."},
-    { r:"assets/img/art/2017-04-02-18-13-perlin-displaced-d-imgd-lighter-b-BPI.png",
-      t:"Perlin noise, 2017/03–04"},
-    { r:"assets/img/art/2016-10-23-21-56-stripes-checkers-wool-large-skyea-AIJ.png",
-      t:"Woollen tapestry, earth colors, AIJ, 2016/10.",
+//    { r:"assets/img/art/2017-01-13-22-10-paint-w-l-shimmer-b-ACM.png",
+//      t:"Fairy woodstuff b, 2017/01."},
+    { r:"assets/img/art/fabrics/2017-04-25-20-05-migrasion-wb-AAO.png",
+        t:"Migrasion/les nuages, 2017/04",
+//    { r:"assets/img/art/2016-10-23-21-56-stripes-checkers-wool-large-skyea-AIJ.png",
+//      t:"Woollen tapestry, earth colors, AIJ, 2016/10.",
       sub:"/generative-art.html?subp=hexwall"},
     { r:"assets/img/art/2017-04-05-20-53-spir-perl-AAI.png",
       t:"Waveforms, 2017/01–04.", sub:"/generative-art.html?subp=waveforms"},
     { r:"assets/img/art/2017-01-13-21-40-paint-w-l-spiraling-d-AAZ.png",
       t:"Heavy waves, 2017/01."},
-    { r:"assets/img/art/2017-02-19-13-10-paint-w-l-shimmer-d-fisheye-b-AAI.png",
-      t:"2017/02."},
+    { r:"assets/img/art/2017-04-02-18-13-perlin-displaced-d-imgd-lighter-b-BPI.png",
+      t:"Perlin noise, 2017/03–04"},
+//    { r:"assets/img/art/2017-02-19-13-10-paint-w-l-shimmer-d-fisheye-b-AAI.png",
+//      t:"2017/02."},
 
     { h2:"Simulations and imitations", id: "periods"},
     { r:"assets/img/art/2017-04-02-11-08-part-sys-avgd-a-ACB.png",
@@ -159,13 +161,14 @@ for a somewhat spurious account of my artistic motivation.</p>
       t:"Sandstone mosaic, variation ABK, 2016/10."},
     { r:"assets/img/art/2017-01-13-00-39-paint-w-light-j8-AFA.png",
       t:"Oils, 2016-17."},
-    { r:"assets/img/art/fabrics/2017-04-22-15-11-wool-marbaz-squ-bcdefgh-ACT.png",
-      t:"Une migrasion d'oiseaux sauvages, 2017/04"},
     { r:"assets/img/art/2017-01-13-00-20-paint-w-light-j2-AEW.png",
       t:"Milky grid on a concave surface, variation ACA/AEW, 2017/01."},
     { r:"assets/img/art/2016-10-23-21-56-stripes-checkers-wool-large-skyea-AIJ.png",
       t:"Woollen tapestry, earth colors, AIJ, 2016/10."},
-
+      { r:"assets/img/art/fabrics/2017-04-22-15-11-wool-marbaz-squ-bcdefgh-ACT.png",
+        t:"Une migrasion d'oiseaux sauvages/la nuit, 2017/04"},
+      { r:"assets/img/art/fabrics/2017-04-25-20-05-migrasion-wb-AAO.png",
+          t:"Migrasion/les nuages, 2017/04"},
   ];
 
   var w_waveforms = [
@@ -288,6 +291,7 @@ for a somewhat spurious account of my artistic motivation.</p>
         .append("img").attr("src", w.r).attr("class", (w.cl||"")+(w.sub?" sublink":""));
       if (w.t) { var p = tmp.append("p").attr("class", "img-text").text(w.t + " "); }
       if (w.s) { p.append("a").attr("href", w.s).text("[source]"); }
+      if (w.sub) { p.append("br"); p.append("span").text(" Click image to view series."); }
     }
   });
 
