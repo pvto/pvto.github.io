@@ -42,6 +42,7 @@ for a somewhat spurious account of my artistic motivation.</p>
 
 
 <script>
+  var SRC = "https://github.com/pvto/konte-snippets/blob/master/";
   var w_frontpage = [
     { h2:"Surfaces", id:"surface",
 //      p: "Many of the following pieces simulate surfaces of fabric, stone, canvas, and other materials."
@@ -71,6 +72,8 @@ for a somewhat spurious account of my artistic motivation.</p>
       t:"Niger, 2017/06", sub:"/generative-art.html?subp=niger"},
 
     { h2:"Simulations and imitations", id: "periods"},
+    { r:"assets/img/art/oscillator/2d_fig-d5-ABI-2018-11-28-22-33.png",
+      t:"Modified harmonic oscillator, 2018/12", sub:"/generative-art.html?subp=oscillator"},
     { r:"assets/img/art/2017-04-02-11-08-part-sys-avgd-a-ACB.png",
       t: "Particle system, 2017/04"},
     { r:"assets/img/art/2017-03-27-23-55-particle-system-d-ABM.png",
@@ -169,10 +172,12 @@ for a somewhat spurious account of my artistic motivation.</p>
       t:"Milky grid on a concave surface, variation ACA/AEW, 2017/01."},
     { r:"assets/img/art/2016-10-23-21-56-stripes-checkers-wool-large-skyea-AIJ.png",
       t:"Woollen tapestry, earth colors, AIJ, 2016/10."},
-      { r:"assets/img/art/fabrics/2017-04-22-15-11-wool-marbaz-squ-bcdefgh-ACT.png",
-        t:"Une migrasion d'oiseaux sauvages/la nuit, 2017/04"},
-      { r:"assets/img/art/fabrics/2017-04-25-20-05-migrasion-wb-AAO.png",
-          t:"Migrasion/les nuages, 2017/04"},
+    { r:"assets/img/art/2016-10-11-22-43-stripes-checkers-wool-large-AEN.png",
+      t:"Woollen tapestry, bright colors, AEN, 2016/10"},
+    { r:"assets/img/art/fabrics/2017-04-22-15-11-wool-marbaz-squ-bcdefgh-ACT.png",
+      t:"Une migrasion d'oiseaux sauvages/la nuit, 2017/04"},
+    { r:"assets/img/art/fabrics/2017-04-25-20-05-migrasion-wb-AAO.png",
+      t:"Migrasion/les nuages, 2017/04"},
   ];
 
   var w_waveforms = [
@@ -283,6 +288,19 @@ for a somewhat spurious account of my artistic motivation.</p>
       s:"https://github.com/pvto/konte-snippets/blob/master/color-work/curl-wabcd-xabcde.c3dg" },
   ];
 
+  var w_oscillator = [
+      { r: "assets/img/art/oscillator/mod_hm_spiral-AGY-2018-11-26-22-23.png", t: "AGY", s: SRC+"harm_motion/mod_hm_spiral.c3dg" },
+      { r: "assets/img/art/oscillator/2d_sampl_b-ABU-2018-11-26-23-44.png", t: "ABU", s: SRC+"harm_motion/2d_sampl_b.c3dg" },
+      { r: "assets/img/art/oscillator/2d_fig-ABB-2018-11-27-21-39.png", t: "ABB", s: SRC+"harm_motion/2d_fig.c3dg" },
+      { r: "assets/img/art/oscillator/2d_fig-f-ACQ-2018-11-27-22-28.png", t: "ACQ", s: SRC+"harm_motion/2d_fig-f.c3dg" },
+      { r: "assets/img/art/oscillator/2d_fig-g-ACR-2018-11-27-23-03.png", t: "ACR", s: SRC+"harm_motion/2d_fig-g.c3dg" },
+      { r: "assets/img/art/oscillator/2d_fig-d3-AAV-2018-11-28-22-14.png", t: "AAV", s: SRC+"harm_motion/2d_fig-d3.c3dg" },
+      { r: "assets/img/art/oscillator/2d_fig-d5-ABI-2018-11-28-22-33.png", t: "ABI", s: SRC+"harm_motion/2d_fig-d5.c3dg" },
+      { r: "assets/img/art/oscillator/nuclei-d2c-AJQ-2018-12-22-01-02.png", t: "AJQ", s: SRC+"harm_motion/nuclei-d2c.c3dg" },
+      { r: "assets/img/art/oscillator/nuclei-h3b-AJS-2018-12-22-01-11.png", t: "AJS", s: SRC+"harm_motion/nuclei-h3b.c3dg" },
+      { r: "assets/img/art/oscillator/2d_fig-d5-perlin-col-ABX-2018-12-23-23-37.png", t: "ABX", s: SRC+"harm_motion/2d_fig-d5-perlin-col.c3dg" },
+      { r: "assets/img/art/oscillator/2d_fig-d5-perlin-col-B-ACK-2018-12-23-23-55.png", t: "ACK", s: SRC+"harm_motion/2d_fig-d5-perlin-col-B.c3dg" }
+  ];
   var subs = {
     "hexwall": w_hexwall,
     "waveforms": w_waveforms,
@@ -290,7 +308,8 @@ for a somewhat spurious account of my artistic motivation.</p>
     "letters": w_letters,
     "manmachine": w_manmachine,
     "perlinwall": w_perlinwall,
-    "niger": w_niger
+    "niger": w_niger,
+    "oscillator": w_oscillator
   };
 
 
@@ -339,3 +358,4 @@ for a somewhat spurious account of my artistic motivation.</p>
 </script>
 
 </div>
+    
